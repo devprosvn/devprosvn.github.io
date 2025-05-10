@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Deep Hunter: Great Battle Under the Sea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --deep-blue: #0a2342;
+      --ocean-blue: #185a9d;
+      --marine-teal: #43cea2;
+      --cyan: #2bc0e4;
+      --white: #fff;
+      --yellow: #ffe066;
+      --nav-bg: rgba(10,35,66,0.95);
+      --section-bg: rgba(24,90,157,0.12);
+      --gradient: linear-gradient(135deg, #0a2342 0%, #185a9d 60%, #43cea2 100%);
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--deep-blue);
+      color: var(--white);
+      scroll-behavior: smooth;
+    }
+    body {
+      min-height: 100vh;
+      background: var(--gradient);
+    }
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: var(--nav-bg);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(10,35,66,0.15);
+      transition: background 0.3s;
+    }
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 1rem 2vw;
+    }
+    nav li {
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      padding: 0.5em 0.8em;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+    nav a.active, nav a:hover {
+      background: var(--marine-teal);
+      color: var(--deep-blue);
+    }
+    /* Hero Banner */
+    .hero {
+      width: 100vw;
+      min-height: 340px;
+      background: url('banner.png') center/cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding-top: 70px;
+      position: relative;
+    }
+    .hero-overlay {
+      background: linear-gradient(180deg, rgba(10,35,66,0.7) 0%, rgba(24,90,157,0.5) 100%);
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 2.5rem 2rem 2rem 3vw;
+      color: var(--yellow);
+      text-shadow: 0 2px 8px #0a2342;
+    }
+    .hero-content h1 {
+      font-size: 2.6rem;
+      margin: 0 0 0.5rem 0;
+      letter-spacing: 0.04em;
+    }
+    .hero-content h2 {
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin: 0 0 0.5rem 0;
+      color: var(--white);
+    }
+    /* Sections */
+    section {
+      padding: 4rem 6vw 3rem 6vw;
+      background: var(--section-bg);
+      margin: 0 auto 2rem auto;
+      border-radius: 18px;
+      max-width: 900px;
+      box-shadow: 0 2px 16px rgba(24,90,157,0.08);
+      position: relative;
+    }
+    section h2 {
+      color: var(--cyan);
+      font-size: 2rem;
+      margin-top: 0;
+      margin-bottom: 1.2rem;
+      letter-spacing: 0.03em;
+      text-shadow: 0 1px 8px #0a2342;
+    }
+    .timeline {
+      border-left: none;
+      margin-left: 0;
+      padding-left: 0;
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .timeline-gradient {
+      position: absolute;
+      left: 32px;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      border-radius: 6px;
+      background: linear-gradient(180deg, #2bc0e4 0%, #43cea2 100%);
+      z-index: 0;
+    }
+    .timeline-event {
+      position: relative;
+      margin-left: 60px;
+      margin-bottom: 2.5rem;
+      min-height: 48px;
+      animation: fadeInUp 0.7s;
+      animation-fill-mode: both;
+      display: flex;
+      align-items: center; /* căn giữa theo chiều dọc */
+    }
+    .timeline-event:last-child {
+      margin-bottom: 0;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -44px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #2bc0e4 60%, #43cea2 100%);
+      border: 3px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(67,206,162,0.18), 0 0 16px 2px #2bc0e4;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow 0.3s;
+    }
+    .timeline-event strong {
+      color: #2bc0e4;
+      font-size: 1.15em;
+      letter-spacing: 0.01em;
+      text-shadow: 0 1px 8px #0a2342;
+    }
+    .timeline-event span {
+      color: #fff;
+      font-size: 1.07em;
+      margin-left: 0.3em;
+      font-weight: 400;
+      text-shadow: 0 1px 8px #0a2342;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    @media (max-width: 700px) {
+      .timeline-event { margin-left: 44px; }
+      .timeline-dot { left: -32px; width: 22px; height: 22px; }
+      .timeline-gradient { left: 18px; width: 4px; }
+    }
+    @media (max-width: 480px) {
+      .timeline-event { margin-left: 32px; }
+      .timeline-dot { left: -18px; width: 14px; height: 14px; }
+      .timeline-gradient { left: 6px; width: 3px; }
+    }
+    /* .timeline-event:before {
+      content: '';
+      position: absolute;
+      left: -1.7rem;
+      top: 0.3rem;
+      width: 1.1rem;
+      height: 1.1rem;
+      background: var(--cyan);
+      border-radius: 50%;
+      border: 3px solid var(--marine-teal);
+      box-shadow: 0 0 0 2px #0a2342;
+    } */
+    /* Whitepaper Button */
+    .whitepaper-btn {
+      display: inline-block;
+      background: var(--marine-teal);
+      color: var(--deep-blue);
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 0.8em 1.6em;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 1.5rem;
+      box-shadow: 0 2px 8px rgba(43,192,228,0.18);
+      transition: background 0.2s, color 0.2s;
+    }
+    .whitepaper-btn:hover {
+      background: var(--cyan);
+      color: var(--deep-blue);
+    }
+    /* Back to Top Button */
+    #backToTop {
+      display: none;
+      position: fixed;
+      bottom: 2.2rem;
+      right: 2.2rem;
+      z-index: 1200;
+      background: var(--marine-teal);
+      color: var(--deep-blue);
+      border: none;
+      border-radius: 50%;
+      width: 54px;
+      height: 54px;
+      font-size: 2rem;
+      box-shadow: 0 2px 12px rgba(24,90,157,0.22);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #backToTop:hover {
+      background: var(--cyan);
+    }
+    /* Footer */
+    footer {
+      background: var(--nav-bg);
+      color: var(--white);
+      text-align: center;
+      padding: 2rem 1vw 1.2rem 1vw;
+      font-size: 1rem;
+      border-radius: 18px 18px 0 0;
+      margin: 2rem auto 0 auto;
+      max-width: 900px;
+      box-shadow: 0 -2px 12px rgba(24,90,157,0.08);
+    }
+    .footer-links a {
+      color: var(--cyan);
+      text-decoration: none;
+      margin: 0 0.5em;
+      font-weight: 700;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      .hero-content h1 { font-size: 1.5rem; }
+      .hero-content h2 { font-size: 1rem; }
+      section { padding: 2.2rem 4vw 1.5rem 4vw; }
+      nav ul { gap: 0.7rem; padding: 0.7rem 1vw; }
+      #backToTop { width: 42px; height: 42px; font-size: 1.3rem; }
+      footer { font-size: 0.95rem; padding: 1.2rem 2vw 0.7rem 2vw; }
+    }
+    @media (max-width: 480px) {
+      .hero { min-height: 180px; }
+      .hero-content { padding: 1.2rem 1rem 1rem 2vw; }
+      section { padding: 1.2rem 2vw 1rem 2vw; }
+      nav ul { flex-wrap: wrap; gap: 0.3rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <ul>
+      <li><a href="#welcome" class="nav-link active">Welcome</a></li>
+      <li><a href="#gameplay" class="nav-link">Gameplay</a></li>
+      <li><a href="#survival" class="nav-link">Survival</a></li>
+      <li><a href="#boss" class="nav-link">Boss Events</a></li>
+      <li><a href="#economy" class="nav-link">Economy</a></li>
+      <li><a href="#nft" class="nav-link">NFT & Web3</a></li>
+      <li><a href="#roadmap" class="nav-link">Roadmap</a></li>
+      <li><a href="#whitepaper" class="nav-link">Whitepaper</a></li>
+    </ul>
+  </nav>
+  <!-- Hero Banner -->
+  <div class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>DEEP HUNTER</h1>
+      <h2>Great Battle Under the Sea – Big Fish Eats Small Fish 4.0</h2>
+    </div>
+  </div>
+  <!-- Sections -->
+  <main>
+    <section id="welcome">
+      <h2>Welcome to Deep Hunter</h2>
+      <p>
+        Deep Hunter opens up a vibrant ocean world where players embark on an epic journey of survival, evolution, and conquest. Dive into real-time battles, transform into powerful sea creatures, and compete for dominance in the mysterious depths!
+      </p>
+    </section>
+    <section id="gameplay">
+      <h2>Gameplay Mechanics</h2>
+      <ul>
+        <li><strong>Choose Your Creature:</strong> Start as one of three species: 
+          <span style="color:#ffe066;">Tigerfish</span> (high speed, dash skill), 
+          <span style="color:#00e0ff;">Electric Jellyfish</span> (stun ability), or 
+          <span style="color:#43cea2;">Sea Turtle</span> (high armor, abundant stamina).
+        </li>
+        <li><strong>Real-Time Map:</strong> Navigate a dynamic ocean map inspired by Slither.io, with improved mechanics and live PvP action.</li>
+        <li><strong>PvP & PvE:</strong> Battle other players, hunt prey, and avoid becoming food for larger predators. Transform into new forms as you grow and survive.</li>
+      </ul>
+    </section>
+    <section id="survival">
+      <h2>Survival & Evolution</h2>
+      <ul>
+        <li><strong>HP System:</strong> Manage your health points—taking damage from predators or hazards reduces HP.</li>
+        <li><strong>Stamina:</strong> Actions like dashing or special skills consume stamina, which regenerates over time or with items.</li>
+        <li><strong>Transformation:</strong> As you consume prey and survive, evolve into stronger forms with new abilities and appearances.</li>
+      </ul>
+    </section>
+    <section id="boss">
+      <h2>Deep Sea Boss Events</h2>
+      <p>
+        Face off against colossal Deep Sea Bosses in special timed events. Team up with others or challenge bosses solo for rare rewards and leaderboard glory!
+      </p>
+    </section>
+    <section id="economy">
+      <h2>Ocean Economy</h2>
+      <ul>
+        <li><strong>Token Rewards:</strong> Earn DH coins by defeating enemies, surviving events, and completing missions.</li>
+        <li><strong>Coin-to-Token Conversion:</strong> Exchange in-game DH coins for blockchain tokens at a fixed rate (see whitepaper for details).</li>
+        <li><strong>Marketplace:</strong> Trade items, skins, and power-ups with other players in a secure ocean economy.</li>
+      </ul>
+    </section>
+    <section id="nft">
+      <h2>NFT & Blockchain Integration</h2>
+      <ul>
+        <li><strong>Unique Skins & Skills:</strong> Collect and trade NFT-based fish skins, special abilities, and rare items.</li>
+        <li><strong>Web3 Security:</strong> Enjoy secure, transparent transactions and true ownership of your digital assets.</li>
+      </ul>
+    </section>
+    <section id="roadmap">
+      <h2>Roadmap to Launch</h2>
+      <div class="timeline" style="position:relative;">
+        <div class="timeline-gradient"></div>
+        <div class="timeline-event" style="animation-delay:0.1s;">
+          <div class="timeline-dot"></div>
+          <strong>Q4/2025:</strong>
+          <span>Alpha version release, core gameplay testing, and first NFT drop.</span>
+        </div>
+        <div class="timeline-event" style="animation-delay:0.2s;">
+          <div class="timeline-dot"></div>
+          <strong>Q2/2026:</strong>
+          <span>Beta launch, PvP tournaments, and marketplace integration.</span>
+        </div>
+        <div class="timeline-event" style="animation-delay:0.3s;">
+          <div class="timeline-dot"></div>
+          <strong>Q4/2026:</strong>
+          <span>Deep Sea Boss mode, expanded PvE, and Web3 features.</span>
+        </div>
+        <div class="timeline-event" style="animation-delay:0.4s;">
+          <div class="timeline-dot"></div>
+          <strong>Q1/2027:</strong>
+          <span>Official global launch, tokenomics rollout, and community events.</span>
+        </div>
+      </div>
+    </section>
+    <section id="whitepaper" style="text-align:center;">
+      <h2>Whitepaper Access</h2>
+      <a class="whitepaper-btn" href="https://docs.google.com/document/d/1Czggf1_3k-4Wx8teU4XSzLn5_wxaW7vLpYSei9GJmNQ/edit?usp=sharing" target="_blank" rel="noopener">View Full Whitepaper</a>
+    </section>
+  </main>
+  <!-- Back to Top Button -->
+  <button id="backToTop" title="Back to Top">&#8679;</button>
+  <!-- Footer -->
+  <footer>
+    <div>
+      <strong>Developer:</strong> DevPros<br>
+      <strong>Email:</strong> work.devpros@gmail.com<br>
+      <span class="footer-links">
+        <a href="https://facebook.com/blog.devpros" target="_blank" rel="noopener">Facebook</a>
+      </span>
+    </div>
+    <div style="margin-top:0.7em;font-size:0.93em;color:#aaa;">
+      &copy; 2024 Deep Hunter. All rights reserved.
+    </div>
+  </footer>
+  <!-- JS for nav, scroll, and back-to-top -->
+  <script>
+    // Smooth scroll and nav highlight
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = Array.from(document.querySelectorAll('main section'));
+    function onScroll() {
+      const scrollPos = window.scrollY + 80;
+      let found = false;
+      for (let i = sections.length - 1; i >= 0; i--) {
+        if (scrollPos >= sections[i].offsetTop) {
+          navLinks.forEach(l => l.classList.remove('active'));
+          navLinks[i].classList.add('active');
+          found = true;
+          break;
+        }
+      }
+      if (!found) navLinks.forEach(l => l.classList.remove('active'));
+      // Back to Top button
+      document.getElementById('backToTop').style.display = window.scrollY > 200 ? 'block' : 'none';
+    }
+    window.addEventListener('scroll', onScroll);
+    navLinks.forEach((link, idx) => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        sections[idx].scrollIntoView({behavior: 'smooth', block: 'start'});
+      });
+    });
+    // Back to Top
+    document.getElementById('backToTop').onclick = () => window.scrollTo({top:0,behavior:'smooth'});
+    // Initial highlight
+    window.addEventListener('DOMContentLoaded', onScroll);
+  </script>
+</body>
+</html>
