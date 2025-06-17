@@ -21,7 +21,7 @@ function App() {
                 <div class="logo-container">
                   <div class="logo-glow"></div>
                   <img 
-                    src="/assets/devpros.png" 
+                    src="src/assets/devpros.png" 
                     alt="DevPros Logo" 
                     class="devpros-logo"
                   />
@@ -32,11 +32,9 @@ function App() {
               <div class="motto-section">
                 <div class="motto-container">
                   <h1 class="cyber-motto">
-                    <span class="motto-word">ALL</span>
-                    <span class="motto-separator">IN</span>
-                    <span class="motto-word">OR</span>
-                    <span class="motto-word">ALL</span>
-                    <span class="motto-highlight">ALTERED</span>
+                    <span class="motto-group-1">ALL IN</span>
+                    <span class="motto-separator"> </span>
+                    <span class="motto-group-2">OR ALL ALTERED</span>
                   </h1>
                   <div class="motto-underline"></div>
                 </div>
