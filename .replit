@@ -6,3 +6,20 @@ channel = "stable-24_05"
 
 [deployment]
 run = ["sh", "-c", "npm run start"]
+
+[workflows]
+runButton = "Run DevPros"
+
+[[workflows.workflow]]
+name = "Run DevPros"
+author = 42118327
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd devpros && npm run dev"
+
+[[ports]]
+localPort = 5173
+externalPort = 5173
+exposeLocalhost = true
