@@ -1,52 +1,8 @@
 
-import { createSignal, onMount, onCleanup } from 'solid-js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
 function App() {
-  const [scrollY, setScrollY] = createSignal(0)
-  const [isVisible, setIsVisible] = createSignal({
-    logo: false,
-    motto: false,
-    contacts: false
-  })
-
-  const handleScroll = () => {
-    const currentScrollY = window.scrollY
-    setScrollY(currentScrollY)
-
-    // Trigger animations based on scroll position
-    const windowHeight = window.innerHeight
-    const documentHeight = document.documentElement.scrollHeight
-
-    if (currentScrollY > 50) {
-      setIsVisible(prev => ({ ...prev, logo: true }))
-    } else {
-      setIsVisible(prev => ({ ...prev, logo: false }))
-    }
-
-    if (currentScrollY > 200) {
-      setIsVisible(prev => ({ ...prev, motto: true }))
-    } else {
-      setIsVisible(prev => ({ ...prev, motto: false }))
-    }
-
-    if (currentScrollY > 400) {
-      setIsVisible(prev => ({ ...prev, contacts: true }))
-    } else {
-      setIsVisible(prev => ({ ...prev, contacts: false }))
-    }
-  }
-
-  onMount(() => {
-    window.addEventListener('scroll', handleScroll)
-    // Initial check
-    handleScroll()
-  })
-
-  onCleanup(() => {
-    window.removeEventListener('scroll', handleScroll)
-  })
 
   return (
     <div class="cyberpunk-container">
@@ -61,7 +17,7 @@ function App() {
             <div class="cyber-card">
               
               {/* Logo Section */}
-              <div class={`logo-section ${isVisible().logo ? 'animate-in' : 'animate-out'}`}>
+              <div class="logo-section">
                 <div class="logo-container">
                   <div class="logo-glow"></div>
                   <img 
@@ -73,7 +29,7 @@ function App() {
               </div>
 
               {/* Motto Section */}
-              <div class={`motto-section ${isVisible().motto ? 'animate-in' : 'animate-out'}`}>
+              <div class="motto-section">
                 <div class="motto-container">
                   <h1 class="cyber-motto">
                     <span class="motto-word">ALL</span>
@@ -87,7 +43,7 @@ function App() {
               </div>
 
               {/* Contact Section */}
-              <div class={`contact-section ${isVisible().contacts ? 'animate-in' : 'animate-out'}`}>
+              <div class="contact-section">
                 <div class="contact-grid">
                   <div class="contact-item">
                     <div class="contact-icon">
@@ -156,14 +112,7 @@ function App() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div class="scroll-indicator">
-        <div class="scroll-text">SCROLL TO EXPLORE</div>
-        <div class="scroll-arrow">↓</div>
-      </div>
-
-      {/* Extra space for scrolling */}
-      <div style="height: 200vh;"></div>
+      
     </div>
   )
 }
