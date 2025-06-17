@@ -1,34 +1,170 @@
-import { createSignal } from 'solid-js'
-import solidLogo from './assets/solid.svg'
-import viteLogo from '/vite.svg'
+
+import { createSignal, onMount, onCleanup } from 'solid-js'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
 function App() {
-  const [count, setCount] = createSignal(0)
+  const [scrollY, setScrollY] = createSignal(0)
+  const [isVisible, setIsVisible] = createSignal({
+    logo: false,
+    motto: false,
+    contacts: false
+  })
+
+  const handleScroll = () => {
+    const currentScrollY = window.scrollY
+    setScrollY(currentScrollY)
+
+    // Trigger animations based on scroll position
+    const windowHeight = window.innerHeight
+    const documentHeight = document.documentElement.scrollHeight
+
+    if (currentScrollY > 50) {
+      setIsVisible(prev => ({ ...prev, logo: true }))
+    } else {
+      setIsVisible(prev => ({ ...prev, logo: false }))
+    }
+
+    if (currentScrollY > 200) {
+      setIsVisible(prev => ({ ...prev, motto: true }))
+    } else {
+      setIsVisible(prev => ({ ...prev, motto: false }))
+    }
+
+    if (currentScrollY > 400) {
+      setIsVisible(prev => ({ ...prev, contacts: true }))
+    } else {
+      setIsVisible(prev => ({ ...prev, contacts: false }))
+    }
+  }
+
+  onMount(() => {
+    window.addEventListener('scroll', handleScroll)
+    // Initial check
+    handleScroll()
+  })
+
+  onCleanup(() => {
+    window.removeEventListener('scroll', handleScroll)
+  })
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://solidjs.com" target="_blank">
-          <img src={solidLogo} class="logo solid" alt="Solid logo" />
-        </a>
+    <div class="cyberpunk-container">
+      {/* Background effects */}
+      <div class="cyber-grid"></div>
+      <div class="neon-particles"></div>
+      
+      {/* Main content card */}
+      <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center">
+        <div class="row w-100 justify-content-center">
+          <div class="col-12 col-md-8 col-lg-6">
+            <div class="cyber-card">
+              
+              {/* Logo Section */}
+              <div class={`logo-section ${isVisible().logo ? 'animate-in' : 'animate-out'}`}>
+                <div class="logo-container">
+                  <div class="logo-glow"></div>
+                  <img 
+                    src="/attached_assets/devpros (7)_1750193717159.png" 
+                    alt="DevPros Logo" 
+                    class="devpros-logo"
+                  />
+                </div>
+              </div>
+
+              {/* Motto Section */}
+              <div class={`motto-section ${isVisible().motto ? 'animate-in' : 'animate-out'}`}>
+                <div class="motto-container">
+                  <h1 class="cyber-motto">
+                    <span class="motto-word">ALL</span>
+                    <span class="motto-separator">IN</span>
+                    <span class="motto-word">OR</span>
+                    <span class="motto-word">ALL</span>
+                    <span class="motto-highlight">ALTERED</span>
+                  </h1>
+                  <div class="motto-underline"></div>
+                </div>
+              </div>
+
+              {/* Contact Section */}
+              <div class={`contact-section ${isVisible().contacts ? 'animate-in' : 'animate-out'}`}>
+                <div class="contact-grid">
+                  <div class="contact-item">
+                    <div class="contact-icon">
+                      <i class="contact-symbol">@</i>
+                    </div>
+                    <div class="contact-info">
+                      <span class="contact-label">EMAIL</span>
+                      <a href="mailto:work.devpros@gmail.com" class="contact-link">
+                        work.devpros@gmail.com
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="contact-item">
+                    <div class="contact-icon">
+                      <i class="contact-symbol">f</i>
+                    </div>
+                    <div class="contact-info">
+                      <span class="contact-label">FACEBOOK</span>
+                      <a href="https://facebook.com/blog.devpros" target="_blank" class="contact-link">
+                        blog.devpros
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="contact-item">
+                    <div class="contact-icon">
+                      <i class="contact-symbol">git</i>
+                    </div>
+                    <div class="contact-info">
+                      <span class="contact-label">GITHUB</span>
+                      <a href="https://github.com/devprosvn" target="_blank" class="contact-link">
+                        devprosvn
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="contact-item">
+                    <div class="contact-icon">
+                      <i class="contact-symbol">D</i>
+                    </div>
+                    <div class="contact-info">
+                      <span class="contact-label">DORAHACKS</span>
+                      <a href="https://dorahacks.io/hacker/devprosvn" target="_blank" class="contact-link">
+                        devprosvn
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="contact-item">
+                    <div class="contact-icon">
+                      <i class="contact-symbol">🤗</i>
+                    </div>
+                    <div class="contact-info">
+                      <span class="contact-label">HUGGINGFACE</span>
+                      <a href="https://huggingface.co/devprosvn" target="_blank" class="contact-link">
+                        devprosvn
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
       </div>
-      <h1>Vite + Solid</h1>
-      <div class="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count()}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      {/* Scroll indicator */}
+      <div class="scroll-indicator">
+        <div class="scroll-text">SCROLL TO EXPLORE</div>
+        <div class="scroll-arrow">↓</div>
       </div>
-      <p class="read-the-docs">
-        Click on the Vite and Solid logos to learn more
-      </p>
-    </>
+
+      {/* Extra space for scrolling */}
+      <div style="height: 200vh;"></div>
+    </div>
   )
 }
 
