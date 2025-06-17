@@ -332,11 +332,11 @@ body {
   margin-bottom: 0.3rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  animation: labelGlow 8s ease-in-out infinite;
+  animation: labelFadeOut 8s ease-in-out infinite;
 }
 
 /* Animation for contact labels - fades to invisible when card gets darker (similar to OR ALL ALTERED) */
-@keyframes labelGlow {
+@keyframes labelFadeOut {
   0% { 
     color: #599ee3;
     text-shadow: 0 0 15px rgba(89, 158, 227, 0.5);
@@ -370,6 +370,38 @@ body {
   font-size: 1.1rem;
   font-weight: 500;
   transition: color 0.3s ease;
+  animation: linkGlow 8s ease-in-out infinite;
+}
+
+/* Animation for contact links - gets brighter when card gets darker (similar to ALL IN) */
+@keyframes linkGlow {
+  0% { 
+    color: #114f8c;
+    text-shadow: 0 0 10px rgba(17, 79, 140, 0.3);
+  }
+  25% { 
+    color: #0d3f6f;
+    text-shadow: 
+      0 0 15px rgba(17, 79, 140, 0.4),
+      0 0 25px rgba(17, 79, 140, 0.2);
+  }
+  50% { 
+    color: #ffffff;
+    text-shadow: 
+      0 0 30px rgba(17, 79, 140, 1),
+      0 0 50px rgba(17, 79, 140, 0.8),
+      0 0 70px rgba(17, 79, 140, 0.6);
+  }
+  75% { 
+    color: #0d3f6f;
+    text-shadow: 
+      0 0 15px rgba(17, 79, 140, 0.4),
+      0 0 25px rgba(17, 79, 140, 0.2);
+  }
+  100% { 
+    color: #114f8c;
+    text-shadow: 0 0 10px rgba(17, 79, 140, 0.3);
+  }
 }
 
 .contact-link:hover {
