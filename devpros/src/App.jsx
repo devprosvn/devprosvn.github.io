@@ -21,7 +21,7 @@ function App() {
                 <div class="logo-container">
                   <div class="logo-glow"></div>
                   <img 
-                    src="/devpros/src/assets/devpros.png" 
+                    src="/assets/devpros.png" 
                     alt="DevPros Logo" 
                     class="devpros-logo"
                   />
