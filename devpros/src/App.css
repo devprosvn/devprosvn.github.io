@@ -335,34 +335,32 @@ body {
   animation: labelGlow 8s ease-in-out infinite;
 }
 
-/* Animation for contact labels - gets brighter when card gets darker (similar to ALL IN) */
+/* Animation for contact labels - fades to invisible when card gets darker (similar to OR ALL ALTERED) */
 @keyframes labelGlow {
   0% { 
     color: #599ee3;
-    text-shadow: 0 0 5px rgba(89, 158, 227, 0.2);
+    text-shadow: 0 0 15px rgba(89, 158, 227, 0.5);
+    opacity: 1;
   }
   25% { 
     color: #4a8bc2;
-    text-shadow: 
-      0 0 8px rgba(89, 158, 227, 0.3),
-      0 0 15px rgba(89, 158, 227, 0.1);
+    text-shadow: 0 0 10px rgba(89, 158, 227, 0.3);
+    opacity: 0.6;
   }
   50% { 
-    color: #ffffff;
-    text-shadow: 
-      0 0 15px rgba(89, 158, 227, 0.8),
-      0 0 25px rgba(89, 158, 227, 0.6),
-      0 0 35px rgba(89, 158, 227, 0.4);
+    color: rgba(89, 158, 227, 0.05);
+    text-shadow: 0 0 2px rgba(89, 158, 227, 0.05);
+    opacity: 0.05;
   }
   75% { 
     color: #4a8bc2;
-    text-shadow: 
-      0 0 8px rgba(89, 158, 227, 0.3),
-      0 0 15px rgba(89, 158, 227, 0.1);
+    text-shadow: 0 0 10px rgba(89, 158, 227, 0.3);
+    opacity: 0.6;
   }
   100% { 
     color: #599ee3;
-    text-shadow: 0 0 5px rgba(89, 158, 227, 0.2);
+    text-shadow: 0 0 15px rgba(89, 158, 227, 0.5);
+    opacity: 1;
   }
 }
 

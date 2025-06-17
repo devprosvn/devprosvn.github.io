@@ -45,11 +45,11 @@ function App() {
                 <div class="contact-grid">
                   <div class="contact-item">
                     <div class="contact-icon">
-                      <i class="contact-symbol">@</i>
+                      <i class="contact-symbol">🤗</i>
                     </div>
                     <div class="contact-info">
-                      <span class="contact-label">EMAIL</span>
-                      <a href="mailto:work.devpros@gmail.com" class="contact-link">
+                      <span class="contact-label">HUGGINGFACE</span>
+                      <a href="https://huggingface.co/devprosvn" target="_blank" class="contact-link">
                         work.devpros@gmail.com
                       </a>
                     </div>
@@ -57,11 +57,11 @@ function App() {
 
                   <div class="contact-item">
                     <div class="contact-icon">
-                      <i class="contact-symbol">f</i>
+                      <i class="contact-symbol">D</i>
                     </div>
                     <div class="contact-info">
-                      <span class="contact-label">FACEBOOK</span>
-                      <a href="https://facebook.com/blog.devpros" target="_blank" class="contact-link">
+                      <span class="contact-label">DORAHACKS</span>
+                      <a href="https://dorahacks.io/hacker/devprosvn" target="_blank" class="contact-link">
                         blog.devpros
                       </a>
                     </div>
@@ -81,11 +81,11 @@ function App() {
 
                   <div class="contact-item">
                     <div class="contact-icon">
-                      <i class="contact-symbol">D</i>
+                      <i class="contact-symbol">f</i>
                     </div>
                     <div class="contact-info">
-                      <span class="contact-label">DORAHACKS</span>
-                      <a href="https://dorahacks.io/hacker/devprosvn" target="_blank" class="contact-link">
+                      <span class="contact-label">FACEBOOK</span>
+                      <a href="https://facebook.com/blog.devpros" target="_blank" class="contact-link">
                         devprosvn
                       </a>
                     </div>
@@ -93,11 +93,11 @@ function App() {
 
                   <div class="contact-item">
                     <div class="contact-icon">
-                      <i class="contact-symbol">🤗</i>
+                      <i class="contact-symbol">@</i>
                     </div>
                     <div class="contact-info">
-                      <span class="contact-label">HUGGINGFACE</span>
-                      <a href="https://huggingface.co/devprosvn" target="_blank" class="contact-link">
+                      <span class="contact-label">EMAIL</span>
+                      <a href="mailto:work.devpros@gmail.com" class="contact-link">
                         devprosvn
                       </a>
                     </div>
