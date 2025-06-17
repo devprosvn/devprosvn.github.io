@@ -1,8 +1,9 @@
+
 :root {
   font-family: 'Rajdhani', Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #1a1a1a;
+  color: #114f8c;
   background-color: #ffffff;
 
   font-synthesis: none;
@@ -40,14 +41,14 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(247, 246, 237, 0.5);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(45deg, #ff1493, #ff0080);
+  background: linear-gradient(45deg, #599ee3, #114f8c);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(45deg, #ff0080, #ff1493);
+  background: linear-gradient(45deg, #114f8c, #599ee3);
 }
