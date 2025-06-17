@@ -328,11 +328,42 @@ body {
 .contact-label {
   display: block;
   font-size: 0.8rem;
-  color: #599ee3;
   font-weight: 600;
   margin-bottom: 0.3rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  animation: labelGlow 8s ease-in-out infinite;
+}
+
+/* Animation for contact labels - gets brighter when card gets darker (similar to ALL IN) */
+@keyframes labelGlow {
+  0% { 
+    color: #599ee3;
+    text-shadow: 0 0 5px rgba(89, 158, 227, 0.2);
+  }
+  25% { 
+    color: #4a8bc2;
+    text-shadow: 
+      0 0 8px rgba(89, 158, 227, 0.3),
+      0 0 15px rgba(89, 158, 227, 0.1);
+  }
+  50% { 
+    color: #ffffff;
+    text-shadow: 
+      0 0 15px rgba(89, 158, 227, 0.8),
+      0 0 25px rgba(89, 158, 227, 0.6),
+      0 0 35px rgba(89, 158, 227, 0.4);
+  }
+  75% { 
+    color: #4a8bc2;
+    text-shadow: 
+      0 0 8px rgba(89, 158, 227, 0.3),
+      0 0 15px rgba(89, 158, 227, 0.1);
+  }
+  100% { 
+    color: #599ee3;
+    text-shadow: 0 0 5px rgba(89, 158, 227, 0.2);
+  }
 }
 
 .contact-link {
